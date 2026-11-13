@@ -1,5 +1,5 @@
 """
-Eksperimen CBM P11: memakai DFA.minify() dari automata-lib pada dua kasus.
+Eksperimen minimisasi DFA memakai DFA.minify() dari automata-lib pada dua kasus.
 
 Kasus A : DFA kecil 8 state yang sengaja memuat jalur ganda, dipakai untuk
           menelusuri proses penggabungan state langkah demi langkah.
@@ -7,7 +7,7 @@ Kasus B : penggabungan enam aturan token sebuah scanner (INT, REAL, REAL_DOT,
           EXP_INT, EXP_REAL, EXP_REAL_DOT) memakai product construction
           (minify=False), lalu diminimalkan. Kasus ini sumber angka efisiensi.
 
-Semua angka yang dipakai di laporan berasal dari eksekusi skrip ini.
+Seluruh angka pada berkas hasil di folder hasil/ berasal dari eksekusi skrip ini.
 """
 
 import json
@@ -18,7 +18,9 @@ from pathlib import Path
 from automata.fa.dfa import DFA
 from automata.fa.nfa import NFA
 
-OUT = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent
+OUT = HERE.parent / "hasil"
+OUT.mkdir(parents=True, exist_ok=True)
 SIGMA = {"d", ".", "e", "+", "-"}
 SIGMA_SORTED = sorted(SIGMA)
 
