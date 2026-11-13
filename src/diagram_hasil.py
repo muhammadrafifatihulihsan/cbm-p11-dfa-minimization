@@ -1,6 +1,6 @@
 """
-Membuat diagram DFA (tata letak berlapis) dan grafik perbandingan
-dari hasil_eksperimen.json.
+Menggambar diagram DFA (tata letak berlapis) dan grafik perbandingan
+dari hasil/hasil_eksperimen.json.
 
 Keluaran:
   dfa_kasus_a_sebelum.png, dfa_kasus_a_sesudah.png, dfa_kasus_b_sesudah.png,
@@ -18,8 +18,9 @@ import matplotlib.pyplot as plt
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent / "gambar"
+HASIL = HERE.parent / "hasil"
 OUT.mkdir(parents=True, exist_ok=True)
-DATA = json.loads((HERE / "hasil_eksperimen.json").read_text(encoding="utf-8"))
+DATA = json.loads((HASIL / "hasil_eksperimen.json").read_text(encoding="utf-8"))
 
 URUT_SIMBOL = ["d", ".", "e", "+", "-"]
 TINTA = "#111827"
