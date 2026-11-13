@@ -18,6 +18,21 @@ contoh, dan pengujian menyeluruh 19.531 string dengan panjang 0 sampai 5. Tidak 
 string pun yang hasilnya berbeda sesudah minimisasi, sehingga bahasa yang dikenali tetap
 sama.
 
+## Mana inti tugas, mana perkakas laporan
+
+Satu-satunya skrip yang menjadi inti tugas adalah `kode/01_eksperimen_minify.py`. Skrip ini
+menjalankan fungsi pustaka, mengukur hasilnya, dan menguji ekuivalensi. Empat skrip lain
+adalah perkakas untuk menyusun laporan, bukan bagian dari studi kasus, karena hanya
+menghasilkan gambar dan berkas Word atau PDF.
+
+| Skrip | Peran |
+|---|---|
+| `kode/01_eksperimen_minify.py` | inti tugas: menjalankan `DFA.minify()`, mengukur, dan memverifikasi |
+| `kode/02_buat_gambar_kode.py` | perkakas laporan: tangkapan layar kode sumber |
+| `kode/03_diagram_dfa.py` | perkakas laporan: diagram DFA dan grafik perbandingan |
+| `kode/04_buat_laporan_docx.py` | perkakas laporan: menyusun berkas .docx |
+| `kode/05_docx_ke_pdf.py` | perkakas laporan: ekspor ke .pdf memakai Word |
+
 ## Isi folder
 
 ```
