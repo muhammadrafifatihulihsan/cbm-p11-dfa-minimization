@@ -1,0 +1,6 @@
+automata-lib==9.2.0
+matplotlib
+networkx
+Pillow
+python-docx
+pywin32

@@ -1,0 +1,28 @@
+  189|     def refine(self, S: Iterable[T]) -> List[Tuple[int, int]]:
+  190|         """Refine each set A in the partition to the two sets
+  191|         A & S, A - S.  Return a list of pairs ids (id(A & S), id(A - S))
+  192|         for each changed set.  Within each pair, A & S will be
+  193|         a newly created set, while A - S will be a modified
+  194|         version of an existing set in the partition (retaining its old id).
+  195|         Not a generator because we need to perform the partition
+  196|         even if the caller doesn't iterate through the results.
+  197|         """
+  198|         hit = defaultdict(set)
+  199|         output = []
+  200| 
+  201|         for x in S:
+  202|             hit[self._partition[x]].add(x)
+  203| 
+  204|         for Aid, AintS in hit.items():
+  205|             A = self._sets[Aid]
+  206| 
+  207|             # Only need to check lengths, we already know AintS is a subset of A
+  208|             # by construction
+  209|             if len(AintS) < len(A):
+  210|                 self._sets[id(AintS)] = AintS
+  211|                 for x in AintS:
+  212|                     self._partition[x] = id(AintS)
+  213|                 A -= AintS
+  214|                 output.append((id(AintS), Aid))
+  215| 
+  216|         return output

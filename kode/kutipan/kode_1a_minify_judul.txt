@@ -1,0 +1,20 @@
+  558|     def minify(self, retain_names: bool = False) -> Self:
+  559|         """
+  560|         Create a minimal DFA which accepts the same inputs as this DFA.
+  561| 
+  562|         First, non-reachable states are removed.
+  563|         Then, indistinguishable states are merged using Hopcroft's Algorithm.
+  564| 
+  565|         Parameters
+  566|         ----------
+  567|         retain_names : bool, default: False
+  568|             Whether to retain original names when merging states.
+  569|             New names are from 0 to n-1.
+  570| 
+  571|         Returns
+  572|         ------
+  573|         Self
+  574|             A state-minimal equivalent DFA. May be complete in some cases
+  575|             if the input is partial.
+  576|         """
+  577| 

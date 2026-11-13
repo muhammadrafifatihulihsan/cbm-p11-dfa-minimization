@@ -1,0 +1,26 @@
+  719| 
+  720|         for name, eq in eq_class_name_pairs:
+  721|             # For trap state, can just leave out
+  722|             if trap_state in eq:
+  723|                 continue
+  724| 
+  725|             eq_class_rep = next(iter(eq))
+  726| 
+  727|             inner_transition_dict_old = transitions[eq_class_rep]
+  728|             new_transitions[name] = {
+  729|                 letter: back_map[inner_transition_dict_old[letter]]
+  730|                 for letter in inner_transition_dict_old.keys()
+  731|                 if inner_transition_dict_old[letter] in back_map.keys()
+  732|             }
+  733| 
+  734|         allow_partial = any(
+  735|             len(lookup) != len(input_symbols) for lookup in new_transitions.values()
+  736|         )
+  737|         return cls(
+  738|             states=new_states,
+  739|             input_symbols=new_input_symbols,
+  740|             transitions=new_transitions,
+  741|             initial_state=new_initial_state,
+  742|             final_states=new_final_states,
+  743|             allow_partial=allow_partial,
+  744|         )

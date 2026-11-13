@@ -1,0 +1,842 @@
+{
+  "versi_library": "9.2.0",
+  "alphabet": [
+    "+",
+    "-",
+    ".",
+    "d",
+    "e"
+  ],
+  "kasus_a": {
+    "nama": "Kasus A: DFA kecil dengan jalur ganda",
+    "sebelum": {
+      "states": 8,
+      "final_states": 3,
+      "transition_entries": 40,
+      "matriks_penuh": 40,
+      "bytes_tabel_padat": 80
+    },
+    "sesudah": {
+      "states": 6,
+      "final_states": 2,
+      "transition_entries": 30,
+      "matriks_penuh": 30,
+      "bytes_tabel_padat": 60
+    },
+    "waktu_minify_ms": 0.069,
+    "ekuivalen_library": true,
+    "uji_sama": true,
+    "uji": {
+      "d": true,
+      "dd": true,
+      "+d": true,
+      "-dd": true,
+      "d.d": true,
+      "dd.dd": true,
+      ".d": false,
+      ".dd": false,
+      "d.": false,
+      ".": false,
+      "+": false,
+      "-": false,
+      "e": false,
+      "de": false,
+      "dd+e": false,
+      "dde+d": true,
+      "dde-dd": true,
+      "d.e": false,
+      "+.d": false,
+      "dd..d": false,
+      "--d": false,
+      "dde": false,
+      ".d.": false,
+      "+dd.dd": true,
+      ".ded": false,
+      "d.ded": true,
+      "dde+": false,
+      ".dd.e1": false
+    },
+    "uji_sebelum": {
+      "d": true,
+      "dd": true,
+      "+d": true,
+      "-dd": true,
+      "d.d": true,
+      "dd.dd": true,
+      ".d": false,
+      ".dd": false,
+      "d.": false,
+      ".": false,
+      "+": false,
+      "-": false,
+      "e": false,
+      "de": false,
+      "dd+e": false,
+      "dde+d": true,
+      "dde-dd": true,
+      "d.e": false,
+      "+.d": false,
+      "dd..d": false,
+      "--d": false,
+      "dde": false,
+      ".d.": false,
+      "+dd.dd": true,
+      ".ded": false,
+      "d.ded": true,
+      "dde+": false,
+      ".dd.e1": false
+    },
+    "uji_sesudah": {
+      "d": true,
+      "dd": true,
+      "+d": true,
+      "-dd": true,
+      "d.d": true,
+      "dd.dd": true,
+      ".d": false,
+      ".dd": false,
+      "d.": false,
+      ".": false,
+      "+": false,
+      "-": false,
+      "e": false,
+      "de": false,
+      "dd+e": false,
+      "dde+d": true,
+      "dde-dd": true,
+      "d.e": false,
+      "+.d": false,
+      "dd..d": false,
+      "--d": false,
+      "dde": false,
+      ".d.": false,
+      "+dd.dd": true,
+      ".ded": false,
+      "d.ded": true,
+      "dde+": false,
+      ".dd.e1": false
+    },
+    "grup_gabungan": [
+      [
+        "q2",
+        "q5"
+      ],
+      [
+        "q0",
+        "q6"
+      ]
+    ],
+    "jumlah_grup": 6,
+    "partisi_moore": [
+      [
+        [
+          "q2",
+          "q4",
+          "q5"
+        ],
+        [
+          "q0",
+          "q1",
+          "q3",
+          "q6",
+          "q7"
+        ]
+      ],
+      [
+        [
+          "q0",
+          "q1",
+          "q3",
+          "q6"
+        ],
+        [
+          "q2",
+          "q4",
+          "q5"
+        ],
+        [
+          "q7"
+        ]
+      ],
+      [
+        [
+          "q0",
+          "q6"
+        ],
+        [
+          "q1",
+          "q3"
+        ],
+        [
+          "q2",
+          "q5"
+        ],
+        [
+          "q4"
+        ],
+        [
+          "q7"
+        ]
+      ],
+      [
+        [
+          "q0",
+          "q6"
+        ],
+        [
+          "q1"
+        ],
+        [
+          "q2",
+          "q5"
+        ],
+        [
+          "q3"
+        ],
+        [
+          "q4"
+        ],
+        [
+          "q7"
+        ]
+      ],
+      [
+        [
+          "q0",
+          "q6"
+        ],
+        [
+          "q1"
+        ],
+        [
+          "q2",
+          "q5"
+        ],
+        [
+          "q3"
+        ],
+        [
+          "q4"
+        ],
+        [
+          "q7"
+        ]
+      ]
+    ],
+    "partisi_moore_akhir": [
+      [
+        "q0",
+        "q6"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "q2",
+        "q5"
+      ],
+      [
+        "q3"
+      ],
+      [
+        "q4"
+      ],
+      [
+        "q7"
+      ]
+    ],
+    "jumlah_iterasi_moore": 5,
+    "transisi_sesudah": {
+      "q7": {
+        "d": "q7",
+        "+": "q7",
+        "-": "q7",
+        ".": "q7",
+        "e": "q7"
+      },
+      "q2+q5": {
+        "d": "q2+q5",
+        ".": "q3",
+        "+": "q7",
+        "-": "q7",
+        "e": "q0+q6"
+      },
+      "q0+q6": {
+        "d": "q2+q5",
+        "+": "q1",
+        "-": "q1",
+        ".": "q7",
+        "e": "q7"
+      },
+      "q4": {
+        "d": "q4",
+        "e": "q0+q6",
+        "+": "q7",
+        "-": "q7",
+        ".": "q7"
+      },
+      "q1": {
+        "d": "q2+q5",
+        "+": "q7",
+        "-": "q7",
+        ".": "q7",
+        "e": "q7"
+      },
+      "q3": {
+        "d": "q4",
+        "+": "q7",
+        "-": "q7",
+        ".": "q7",
+        "e": "q7"
+      }
+    },
+    "final_sesudah": [
+      "q2+q5",
+      "q4"
+    ],
+    "awal_sesudah": "q0+q6",
+    "transisi_sebelum": {
+      "q0": {
+        "d": "q2",
+        "+": "q1",
+        "-": "q1",
+        ".": "q7",
+        "e": "q7"
+      },
+      "q1": {
+        "d": "q2",
+        "+": "q7",
+        "-": "q7",
+        ".": "q7",
+        "e": "q7"
+      },
+      "q2": {
+        "d": "q2",
+        ".": "q3",
+        "+": "q7",
+        "-": "q7",
+        "e": "q6"
+      },
+      "q5": {
+        "d": "q2",
+        ".": "q3",
+        "+": "q7",
+        "-": "q7",
+        "e": "q6"
+      },
+      "q3": {
+        "d": "q4",
+        "+": "q7",
+        "-": "q7",
+        ".": "q7",
+        "e": "q7"
+      },
+      "q4": {
+        "d": "q4",
+        "e": "q6",
+        "+": "q7",
+        "-": "q7",
+        ".": "q7"
+      },
+      "q6": {
+        "d": "q5",
+        "+": "q1",
+        "-": "q1",
+        ".": "q7",
+        "e": "q7"
+      },
+      "q7": {
+        "d": "q7",
+        "+": "q7",
+        "-": "q7",
+        ".": "q7",
+        "e": "q7"
+      }
+    },
+    "final_sebelum": [
+      "q2",
+      "q4",
+      "q5"
+    ],
+    "awal_sebelum": "q0"
+  },
+  "kasus_b": {
+    "nama": "Kasus B: gabungan enam aturan token",
+    "sebelum": {
+      "states": 16,
+      "final_states": 6,
+      "transition_entries": 30,
+      "matriks_penuh": 80,
+      "bytes_tabel_padat": 160
+    },
+    "sesudah": {
+      "states": 8,
+      "final_states": 3,
+      "transition_entries": 17,
+      "matriks_penuh": 40,
+      "bytes_tabel_padat": 80
+    },
+    "waktu_minify_ms": 0.096,
+    "ekuivalen_library": true,
+    "uji_sama": true,
+    "uji": {
+      "d": true,
+      "dd": true,
+      "+d": true,
+      "-dd": true,
+      "d.d": true,
+      "dd.dd": true,
+      ".d": true,
+      ".dd": true,
+      "d.": false,
+      ".": false,
+      "+": false,
+      "-": false,
+      "e": false,
+      "de": false,
+      "dd+e": false,
+      "dde+d": true,
+      "dde-dd": true,
+      "d.e": false,
+      "+.d": true,
+      "dd..d": false,
+      "--d": false,
+      "dde": false,
+      ".d.": false,
+      "+dd.dd": true,
+      ".ded": true,
+      "d.ded": true,
+      "dde+": false,
+      ".dd.e1": false
+    },
+    "uji_sebelum": {
+      "d": true,
+      "dd": true,
+      "+d": true,
+      "-dd": true,
+      "d.d": true,
+      "dd.dd": true,
+      ".d": true,
+      ".dd": true,
+      "d.": false,
+      ".": false,
+      "+": false,
+      "-": false,
+      "e": false,
+      "de": false,
+      "dd+e": false,
+      "dde+d": true,
+      "dde-dd": true,
+      "d.e": false,
+      "+.d": true,
+      "dd..d": false,
+      "--d": false,
+      "dde": false,
+      ".d.": false,
+      "+dd.dd": true,
+      ".ded": true,
+      "d.ded": true,
+      "dde+": false,
+      ".dd.e1": false
+    },
+    "uji_sesudah": {
+      "d": true,
+      "dd": true,
+      "+d": true,
+      "-dd": true,
+      "d.d": true,
+      "dd.dd": true,
+      ".d": true,
+      ".dd": true,
+      "d.": false,
+      ".": false,
+      "+": false,
+      "-": false,
+      "e": false,
+      "de": false,
+      "dd+e": false,
+      "dde+d": true,
+      "dde-dd": true,
+      "d.e": false,
+      "+.d": true,
+      "dd..d": false,
+      "--d": false,
+      "dde": false,
+      ".d.": false,
+      "+dd.dd": true,
+      ".ded": true,
+      "d.ded": true,
+      "dde+": false,
+      ".dd.e1": false
+    },
+    "grup_gabungan": [
+      [
+        "11",
+        "14",
+        "9"
+      ],
+      [
+        "1",
+        "5"
+      ],
+      [
+        "10",
+        "12",
+        "15"
+      ],
+      [
+        "13",
+        "6",
+        "7"
+      ],
+      [
+        "4",
+        "8"
+      ]
+    ],
+    "jumlah_grup": 8,
+    "partisi_moore": [
+      [
+        [
+          3,
+          4,
+          8,
+          10,
+          12,
+          15
+        ],
+        [
+          0,
+          1,
+          2,
+          5,
+          6,
+          7,
+          9,
+          11,
+          13,
+          14
+        ]
+      ],
+      [
+        [
+          0
+        ],
+        [
+          1,
+          5,
+          9,
+          11,
+          14
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          6,
+          7,
+          13
+        ],
+        [
+          10,
+          12,
+          15
+        ]
+      ],
+      [
+        [
+          0
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          6,
+          7,
+          13
+        ],
+        [
+          9,
+          11,
+          14
+        ],
+        [
+          10,
+          12,
+          15
+        ]
+      ],
+      [
+        [
+          0
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          6,
+          7,
+          13
+        ],
+        [
+          9,
+          11,
+          14
+        ],
+        [
+          10,
+          12,
+          15
+        ]
+      ]
+    ],
+    "partisi_moore_akhir": [
+      [
+        0
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        6,
+        7,
+        13
+      ],
+      [
+        9,
+        11,
+        14
+      ],
+      [
+        10,
+        12,
+        15
+      ]
+    ],
+    "jumlah_iterasi_moore": 4,
+    "transisi_sesudah": {
+      "3": {
+        ".": "1+5",
+        "e": "13+6+7",
+        "d": "3"
+      },
+      "0": {
+        ".": "1+5",
+        "-": "2",
+        "+": "2",
+        "d": "3"
+      },
+      "13+6+7": {
+        "-": "11+14+9",
+        "+": "11+14+9",
+        "d": "10+12+15"
+      },
+      "4+8": {
+        "e": "13+6+7",
+        "d": "4+8"
+      },
+      "11+14+9": {
+        "d": "10+12+15"
+      },
+      "2": {
+        ".": "1+5",
+        "d": "3"
+      },
+      "10+12+15": {
+        "d": "10+12+15"
+      },
+      "1+5": {
+        "d": "4+8"
+      }
+    },
+    "final_sesudah": [
+      "10+12+15",
+      "3",
+      "4+8"
+    ],
+    "awal_sesudah": "0",
+    "transisi_sebelum": {
+      "0": {
+        ".": 1,
+        "-": 2,
+        "+": 2,
+        "d": 3
+      },
+      "1": {
+        "d": 4
+      },
+      "2": {
+        ".": 1,
+        "d": 3
+      },
+      "3": {
+        ".": 5,
+        "e": 6,
+        "d": 3
+      },
+      "4": {
+        "e": 7,
+        "d": 4
+      },
+      "5": {
+        "d": 8
+      },
+      "6": {
+        "-": 9,
+        "+": 9,
+        "d": 10
+      },
+      "7": {
+        "-": 11,
+        "+": 11,
+        "d": 12
+      },
+      "8": {
+        "e": 13,
+        "d": 8
+      },
+      "9": {
+        "d": 10
+      },
+      "10": {
+        "d": 10
+      },
+      "11": {
+        "d": 12
+      },
+      "12": {
+        "d": 12
+      },
+      "13": {
+        "-": 14,
+        "+": 14,
+        "d": 15
+      },
+      "14": {
+        "d": 15
+      },
+      "15": {
+        "d": 15
+      }
+    },
+    "final_sebelum": [
+      "10",
+      "12",
+      "15",
+      "3",
+      "4",
+      "8"
+    ],
+    "awal_sebelum": "0"
+  },
+  "per_aturan": {
+    "INT": {
+      "regex": "[+-]?d+",
+      "states": 3,
+      "final_states": 1,
+      "transition_entries": 5,
+      "matriks_penuh": 15,
+      "bytes_tabel_padat": 30
+    },
+    "REAL": {
+      "regex": "[+-]?d+\\.d+",
+      "states": 5,
+      "final_states": 1,
+      "transition_entries": 8,
+      "matriks_penuh": 25,
+      "bytes_tabel_padat": 50
+    },
+    "REAL_DOT": {
+      "regex": "[+-]?\\.d+",
+      "states": 4,
+      "final_states": 1,
+      "transition_entries": 6,
+      "matriks_penuh": 20,
+      "bytes_tabel_padat": 40
+    },
+    "EXP_INT": {
+      "regex": "[+-]?d+(e[+-]?d+)",
+      "states": 6,
+      "final_states": 1,
+      "transition_entries": 11,
+      "matriks_penuh": 30,
+      "bytes_tabel_padat": 60
+    },
+    "EXP_REAL": {
+      "regex": "[+-]?d+\\.d+(e[+-]?d+)",
+      "states": 8,
+      "final_states": 1,
+      "transition_entries": 14,
+      "matriks_penuh": 40,
+      "bytes_tabel_padat": 80
+    },
+    "EXP_REAL_DOT": {
+      "regex": "[+-]?\\.d+(e[+-]?d+)",
+      "states": 7,
+      "final_states": 1,
+      "transition_entries": 12,
+      "matriks_penuh": 35,
+      "bytes_tabel_padat": 70
+    }
+  },
+  "regex_rujukan": "[+-]?(d+(\\.d+)?(e[+-]?d+)?|\\.d+(e[+-]?d+)?)",
+  "nfa_state": 36,
+  "nfa_transisi": 43,
+  "dfa_rujukan": {
+    "states": 8,
+    "final_states": 3,
+    "transition_entries": 17,
+    "matriks_penuh": 40,
+    "bytes_tabel_padat": 80
+  },
+  "pemeriksaan": {
+    "jumlah_string": 19531,
+    "panjang_maks": 6,
+    "beda_minify": [],
+    "jumlah_beda_minify": 0,
+    "beda_rujukan": [],
+    "jumlah_beda_rujukan": 0,
+    "minify_ekuivalen_rujukan": true,
+    "jumlah_diterima": 127
+  }
+}
