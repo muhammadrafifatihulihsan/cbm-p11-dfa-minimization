@@ -1,91 +1,119 @@
-# Analisis dan Simulasi Minimisasi DFA pada automata-lib
+# Minimisasi DFA dengan automata-lib
 
-Berkas pendukung tugas Case Based Method pertemuan 11, mata kuliah Teori Bahasa dan
-Automata, Program Studi Informatika, Universitas Negeri Padang.
+Eksperimen tugas Case Based Method pertemuan 11, mata kuliah Teori Bahasa dan Automata,
+Program Studi Informatika, Universitas Negeri Padang.
 
-Objek yang dibedah adalah fungsi `DFA.minify()` pada pustaka Python `automata-lib` versi
-9.2.0. Isinya kode verifikasi, data hasil eksekusi, dan gambar pendukung laporan.
+Objek yang diuji adalah fungsi `DFA.minify()` pada pustaka Python `automata-lib` versi
+9.2.0. Repositori ini berisi kode eksperimen, data hasil pengukuran, dan gambar diagram
+DFA sebelum dan sesudah minimisasi.
 
-## Hasil singkat
+## Dasar pemikiran
 
-| Kasus | Sebelum | Sesudah | Penurunan |
-|---|---|---|---|
-| A, DFA kecil dengan jalur ganda | 8 state, 40 entri | 6 state, 30 entri | 25 persen |
-| B, DFA gabungan enam aturan token | 16 state, 30 entri | 8 state, 17 entri | 50 persen |
+DFA dinyatakan sebagai lima komponen M = (Q, Σ, δ, q0, F). Pada implementasi, δ disimpan
+sebagai tabel berisi pasangan state dan simbol. Karena tabel itu tumbuh sebanding jumlah
+state, setiap state yang perilakunya sama menambah beban memori dan waktu pencarian.
 
-Verifikasi ekuivalensi memakai tiga cara: pembanding DFA bawaan pustaka, uji string
-contoh, dan pengujian menyeluruh 19.531 string dengan panjang 0 sampai 5. Tidak ada satu
-string pun yang hasilnya berbeda sesudah minimisasi, sehingga bahasa yang dikenali tetap
-sama.
+Dua state disebut tidak dapat dibedakan bila untuk setiap string masukan keduanya berakhir
+pada hasil yang sama, sama sama menerima atau sama sama menolak. Relasi ini membentuk kelas
+ekuivalensi, dan setiap kelas boleh diganti dengan satu state. Pekerjaan itulah yang
+dilakukan minimisasi. Pustaka automata-lib memakai algoritma Hopcroft dengan peta balik
+transisi dan antrean pemecah, lalu memakai `PartitionRefinement` untuk memecah kelompok
+state.
 
-## Mana inti tugas, mana perkakas laporan
+## Yang diuji
 
-Satu-satunya skrip yang menjadi inti tugas adalah `kode/01_eksperimen_minify.py`. Skrip ini
-menjalankan fungsi pustaka, mengukur hasilnya, dan menguji ekuivalensi. Empat skrip lain
-adalah perkakas untuk menyusun laporan, bukan bagian dari studi kasus, karena hanya
-menghasilkan gambar dan berkas Word atau PDF.
+Ada dua kasus, keduanya dijalankan oleh `src/eksperimen_minify.py`.
 
-| Skrip | Peran |
-|---|---|
-| `kode/01_eksperimen_minify.py` | inti tugas: menjalankan `DFA.minify()`, mengukur, dan memverifikasi |
-| `kode/02_buat_gambar_kode.py` | perkakas laporan: tangkapan layar kode sumber |
-| `kode/03_diagram_dfa.py` | perkakas laporan: diagram DFA dan grafik perbandingan |
-| `kode/04_buat_laporan_docx.py` | perkakas laporan: menyusun berkas .docx |
-| `kode/05_docx_ke_pdf.py` | perkakas laporan: ekspor ke .pdf memakai Word |
+Kasus A adalah DFA kecil 8 state dengan alfabet Σ = {d, ., e, +, -} yang sengaja memuat
+dua jalur ganda. State q5 dibuat meniru q2, sedangkan q6 meniru q0. Kasus ini dipakai untuk
+melihat proses penggabungan langkah demi langkah.
 
-## Isi folder
-
-```
-kode/01_eksperimen_minify.py     skrip verifikasi utama, menulis hasil_eksperimen.json
-kode/02_buat_gambar_kode.py      pembuat tangkapan layar kode sumber
-kode/03_diagram_dfa.py           pembuat diagram DFA dan grafik perbandingan
-kode/04_buat_laporan_docx.py     penyusun laporan .docx
-kode/05_docx_ke_pdf.py           pengubah laporan menjadi PDF memakai Word
-kode/hasil_eksperimen.json       seluruh angka yang dipakai laporan
-kode/output_eksperimen.txt       keluaran teks skrip verifikasi
-kode/kutipan/                    potongan kode sumber yang dikutip, dengan nomor baris
-gambar/                          tangkapan layar kode, diagram DFA, dan grafik
-```
+Kasus B meniru pekerjaan scanner. Enam aturan token ditulis sebagai ekspresi reguler, lalu
+masing masing dibangun menjadi NFA dan DFA. Semua aturan digabung memakai operasi union
+dengan `minify=False`, sehingga hasil gabungannya masih memuat state kembar. Setelah itu
+minimisasi dijalankan.
 
 ## Cara menjalankan
 
-Pasang pustaka yang dibutuhkan:
-
 ```bash
 pip install -r requirements.txt
+python src/eksperimen_minify.py
+python src/diagram_hasil.py
 ```
 
-Jalankan skrip verifikasi:
+Skrip pertama menulis ulang `hasil/hasil_eksperimen.json` dan mencetak ringkasan ke layar.
+Skrip kedua menggambar diagram DFA dan grafik perbandingan ke folder `gambar/`.
 
-```bash
-python kode/01_eksperimen_minify.py
+## Hasil pengukuran
+
+| Kasus | State sebelum | State sesudah | Entri sebelum | Entri sesudah | Penurunan state | Penurunan entri |
+|---|---|---|---|---|---|---|
+| A, DFA kecil jalur ganda | 8 | 6 | 40 | 30 | 25 persen | 25 persen |
+| B, gabungan enam aturan token | 16 | 8 | 30 | 17 | 50 persen | 43,3 persen |
+
+Jumlah state akhir ikut turun, dari 3 menjadi 2 pada Kasus A dan dari 6 menjadi 3 pada
+Kasus B. Pada Kasus B, alur pembentukannya adalah 36 state NFA menjadi 16 state DFA
+gabungan, lalu 8 state setelah minimisasi, sama dengan DFA rujukan yang dibangun langsung
+dari satu ekspresi reguler.
+
+State yang digabung pada Kasus A ada dua pasangan, yaitu q0 dengan q6 dan q2 dengan q5.
+Pada Kasus B ada lima kelompok, yaitu 10 dengan 11 dan 4, lalu 6 dengan 9, 12 dengan 14 dan
+7, 13 dengan 15 dan 8, serta 3 dengan 5.
+
+Algoritma Moore yang dijalankan sebagai pembanding menghasilkan partisi yang sama.
+Kasus A memerlukan 5 iterasi dan Kasus B memerlukan 4 iterasi.
+
+## Verifikasi ekuivalensi
+
+Minimisasi hanya sah bila bahasa yang dikenali tidak berubah. Pemeriksaan dilakukan tiga
+cara, dan ketiganya sepakat.
+
+| Pemeriksaan | Kasus A | Kasus B |
+|---|---|---|
+| Pembanding DFA bawaan pustaka | ekuivalen | ekuivalen |
+| Uji 28 string contoh sebelum dan sesudah | seluruhnya sama | seluruhnya sama |
+| Pengujian menyeluruh | 0 perbedaan | 0 perbedaan |
+
+Pengujian menyeluruh membangkitkan seluruh string atas alfabet sampai panjang 6, sebanyak
+19.531 string. Sebanyak 127 string diterima, dan tidak ada satu string pun yang hasilnya
+berbeda antara DFA sebelum minimisasi, DFA sesudah minimisasi, dan DFA rujukan.
+
+## Analisis
+
+Penurunan pada kedua kasus berbeda besar, dan penyebabnya bukan algoritma minimisasi,
+melainkan cara DFA dibentuk. Kasus A hanya kehilangan seperempat state karena memang hanya
+memuat dua pasangan state kembar. Kasus B kehilangan setengah state karena operasi union
+menyusun produk silang antar aturan, sehingga banyak state berperilaku sama tetap disimpan
+terpisah. Konversi langsung dari satu ekspresi reguler ke DFA, seperti pada DFA rujukan,
+ternyata sudah menghasilkan bentuk minimal.
+
+Waktu eksekusi `minify()` sendiri sangat kecil, yaitu 0,079 ms pada Kasus A dan 0,115 ms
+pada Kasus B, karena kedua mesin berukuran kecil. Karena itu, manfaat minimisasi pada
+eksperimen ini lebih tepat dibaca sebagai penghematan ukuran tabel, bukan penghematan waktu
+proses. Hopcroft baru terasa keunggulannya pada automaton berukuran besar. Untuk mengukur
+dampak waktu, pengujian perlu diperluas ke DFA dengan ratusan atau ribuan state.
+
+## Batas eksperimen
+
+- Ukuran mesin kecil, sehingga waktu eksekusi belum menggambarkan perilaku algoritma pada
+  automaton besar.
+- Pengujian menyeluruh hanya sampai panjang string 6, sehingga kesamaan bahasa secara umum
+  bertumpu pada pembanding DFA bawaan pustaka.
+- Perkiraan memori pada hasil pengukuran memakai asumsi tabel matriks padat 2 byte per sel,
+  bukan ukuran memori sebenarnya di Python.
+
+## Struktur repositori
+
 ```
-
-Skrip ini membangun dua kasus DFA, menjalankan `minify()`, mengukur jumlah state dan entri
-transisi, lalu menguji ekuivalensi bahasa sebelum dan sesudah minimisasi. Hasilnya ditulis
-ulang ke `kode/hasil_eksperimen.json` dan `kode/output_eksperimen.txt`.
-
-Pembuatan gambar dan laporan dijalankan berurutan:
-
-```bash
-python kode/02_buat_gambar_kode.py
-python kode/03_diagram_dfa.py
-python kode/04_buat_laporan_docx.py
-python kode/05_docx_ke_pdf.py
+src/eksperimen_minify.py     eksperimen utama, menulis hasil/hasil_eksperimen.json
+src/diagram_hasil.py         penggambar diagram DFA dan grafik perbandingan
+hasil/hasil_eksperimen.json  seluruh angka hasil pengukuran
+hasil/output_eksperimen.txt  keluaran teks saat eksperimen dijalankan
+gambar/                      diagram DFA sebelum dan sesudah, alur scanner, grafik
 ```
-
-Skrip `05_docx_ke_pdf.py` memakai otomasi COM, jadi hanya berjalan di Windows yang
-memiliki Microsoft Word.
 
 ## Lingkungan
 
 - Python 3.13
 - automata-lib 9.2.0
-- matplotlib, networkx, Pillow untuk gambar
-- python-docx untuk laporan
-- pywin32 dan Microsoft Word untuk ekspor PDF
-
-## Catatan
-
-Tidak ada aplikasi baru yang dibuat pada tugas ini. Seluruh skrip berfungsi sebagai alat
-verifikasi untuk menjalankan fungsi pustaka, mengukur hasilnya, dan menyusun laporan.
+- matplotlib untuk diagram dan grafik
